@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadanandapur Village Committee</title>
+
+    <!-- CSS Links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- Custom CSS Styles -->
+    <style>
+        /* Color Variables */
+        :root {
+            --primary: #4CAF50;
+            --secondary: #2E7D32;
+            --dark: #1B5E20;
+            --light: #ffffff;
+            --mahfil: #3E8E41;
+            --accent: #8BC34A;
+            --text-dark: #333;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', 'Open Sans', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(31, 42, 56, 0.9);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar.scrolled {
+            background: var(--secondary);
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: var(--light);
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover:after {
+            left: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(27, 94, 32, 0.9), rgba(27, 94, 32, 0.9)),
+                url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 180px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero .btn {
+            margin: 5px;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .hero .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: var(--secondary);
+            position: relative;
+        }
+
+        .features:before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%231B5E20" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%231B5E20" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%231B5E20"/></svg>');
+            background-size: cover;
+        }
+
+        .feature-card {
+            background: var(--dark);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.5s ease;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--dark);
+        }
+
+        .testimonial-card {
+            background: var(--secondary);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.05);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover .testimonial-img {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Payment Section */
+        .payment-options {
+            padding: 100px 0;
+            background: var(--secondary);
+            position: relative;
+        }
+
+        .payment-card {
+            background: var(--dark);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 100px 0;
+            background: var(--dark);
+        }
+
+        .project-card {
+            background: var(--secondary);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover:after {
+            transform: scaleX(1);
+        }
+
+        .progress {
+            height: 10px;
+            margin: 15px 0;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-bar {
+            background: var(--primary);
+            transition: width 1s ease;
+        }
+
+        /* Call to Action Sections */
+        .cta-section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .cta-section .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-section .btn {
+            transition: all 0.3s ease;
+        }
+
+        .cta-section .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 80px 0 20px;
+            position: relative;
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%232E7D32" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%232E7D32" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%232E7D32"/></svg>');
+            background-size: cover;
+        }
+
+        .footer-links h5 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h5:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links a {
+            color: #aaa;
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .footer-links a:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #C8E6C9;
+            padding-left: 20px;
+        }
+
+        .footer-links a:hover:before {
+            opacity: 1;
+        }
+
+        .social-icons a {
+            color: var(--light);
+            background: var(--dark);
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-3px) rotate(5deg);
+        }
+
+        /* Floating Elements */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Pulse Animation */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(76, 175, 80, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+            }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 0 80px;
+                background-attachment: scroll;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .features,
+            .payment-options,
+            .testimonials,
+            .projects,
+            .cta-section {
+                padding: 60px 0;
+            }
+        }
+
+        /* Footer Link Effects */
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-links a .link-text {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a .link-icon {
+            margin-left: 10px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            color: var(--primary);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover:after {
+            width: 100%;
+        }
+
+        /* Social Icons Hover Effects */
+        .social-icons a {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icons a:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .social-icons a:hover:after {
+            left: 100%;
+        }
+
+        /* Pulse animation for social icons */
+        .social-icons a:hover {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ========== Navigation Bar ========== -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://via.placeholder.com/40x40" alt="Logo" class="img-fluid">
+                Sadanandapur
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Main Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#facilities">Facilities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#payments">Payments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                </ul>
+                <a href="login.html" class="btn btn-primary ms-lg-3 pulse">Member Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== Hero Banner ========== -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 class="mb-4 animate__animated animate__fadeInDown">Sadanandapur Village Development</h1>
+            <p class="lead mb-5 animate__animated animate__fadeIn animate__delay-1s">Managing our community assets
+                including the Masjid, Madrasa, and Eidgah. Together we build a better future for our village.</p>
+            <div class="animate__animated animate__fadeInUp animate__delay-2s">
+                <a href="register.html" class="btn btn-primary me-2">Pay Fees</a>
+                <a href="#" class="btn btn-outline-light">Donate Now</a>
+            </div>
+        </div>
+
+        <!-- Floating Mosque Icon -->
+        <i class="fas fa-mosque floating"
+            style="position: absolute; top: 20%; left: 10%; font-size: 3rem; opacity: 0.2; animation-delay: 0.5s;"></i>
+        <i class="fas fa-school floating"
+            style="position: absolute; top: 70%; right: 15%; font-size: 2.5rem; opacity: 0.2; animation-delay: 1s;"></i>
+        <i class="fas fa-kaaba floating"
+            style="position: absolute; bottom: 10%; left: 20%; font-size: 3rem; opacity: 0.2; animation-delay: 1.5s;"></i>
+    </section>
+
+    <!-- ========== Community Facilities ========== -->
+    <section class="features" id="facilities">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="animate__animated">Our Community Facilities</h2>
+                <p class="lead animate__animated animate__delay-1s">Maintained by your village committee with your
+                    contributions</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Mosque Card -->
+                <div class="col-md-4">
+                    <div class="feature-card animate__animated">
+                        <div class="feature-icon">
+                            <i class="fas fa-mosque"></i>
+                        </div>
+                        <h4>Sadanandapur Central Jama Mosque</h4>
+                        <p>Our central mosque with daily prayers and Islamic programs. <strong>Monthly contribution: 50৳
+                                per household.</strong></p>
+                        <a href="#" class="btn btn-outline-light mt-3">Pay Masjid Fee</a>
+                    </div>
+                </div>
+
+                <!-- Madrasa Card -->
+                <div class="col-md-4">
+                    <div class="feature-card animate__animated animate__delay-1s">
+                        <div class="feature-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <h4>Sadanandapur Al-Madania Madrasa</h4>
+                        <p>Islamic education for our children. <strong>Monthly contribution: 50৳ per household.</strong>
+                        </p>
+                        <a href="#" class="btn btn-outline-light mt-3">Pay Madrasa Fee</a>
+                    </div>
+                </div>
+
+                <!-- Eidgah Card -->
+                <div class="col-md-4">
+                    <div class="feature-card animate__animated animate__delay-2s">
+                        <div class="feature-icon">
+                            <i class="fas fa-kaaba"></i>
+                        </div>
+                        <h4>Sadanandapur Eidgah</h4>
+                        <p>Open prayer ground for Eid celebrations. <strong>Annual Waz Mahfil contribution: 500৳ per
+                                household.</strong></p>
+                        <a href="#" class="btn btn-outline-light mt-3">Pay Eidgah Fee</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Projects Section ========== -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Our Ongoing Projects</h2>
+                <p class="lead">Current development initiatives in our village</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Project 1 -->
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <h4>Madrasa Extension</h4>
+                        <p>Building new classrooms and boarding facilities for the Al-Madania Madrasa</p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65"
+                                aria-valuemin="0" aria-valuemax="100">65%</div>
+                        </div>
+                        <p class="small">Funds collected: ৳650,000 of ৳1,000,000</p>
+                        <a href="#" class="btn btn-sm btn-primary mt-2">Donate Now</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <h4>Mosque Renovation</h4>
+                        <p>Modernizing the Central Jama Mosque with new sound system and flooring</p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 40%;" aria-valuenow="40"
+                                aria-valuemin="0" aria-valuemax="100">40%</div>
+                        </div>
+                        <p class="small">Funds collected: ৳200,000 of ৳500,000</p>
+                        <a href="#" class="btn btn-sm btn-primary mt-2">Donate Now</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <h4>Eidgah Development</h4>
+                        <p>Creating permanent shade structures and proper sanitation facilities</p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100">25%</div>
+                        </div>
+                        <p class="small">Funds collected: ৳125,000 of ৳500,000</p>
+                        <a href="#" class="btn btn-sm btn-primary mt-2">Donate Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Payment Options ========== -->
+    <section class="payment-options" id="payments">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Payment Methods</h2>
+                <p class="lead">Convenient ways to pay your community fees</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Mobile Banking -->
+                <div class="col-md-4">
+                    <div class="payment-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4>Mobile Banking</h4>
+                        <p>Pay via bKash, Nagad, or Rocket</p>
+                        <p><strong>bKash: 017XXXXXXXX</strong></p>
+                        <p><strong>Nagad: 018XXXXXXXX</strong></p>
+                    </div>
+                </div>
+
+                <!-- Committee Office -->
+                <div class="col-md-4">
+                    <div class="payment-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4>Committee Office</h4>
+                        <p>Pay in person at our village committee office every <strong>Friday from 2PM - 3PM</strong>
+                            after Jumu'ah prayer</p>
+                    </div>
+                </div>
+
+                <!-- Home Collection -->
+                <div class="col-md-4">
+                    <div class="payment-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h4>Home Collection</h4>
+                        <p>Request our collector to visit your home (available for elderly and disabled)</p>
+                        <p><strong>Call: 019XXXXXXXX</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Waz Mahfil Section ========== -->
+    <section class="cta-section" style="background: var(--mahfil);">
+        <div class="container text-center">
+            <h2 class="text-white mb-3">Annual Waz Mahfil Sponsorship</h2>
+            <p class="lead text-white mb-4">Support our spiritual gathering with your generous contributions</p>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4">
+                            <h4 class="text-success mb-3">500৳ Per Household Contribution</h4>
+                            <p class="text-muted mb-4">Your contribution helps organize this important religious event
+                                that strengthens our community bonds and faith.</p>
+
+                            <div class="d-flex flex-wrap justify-content-center gap-3">
+                                <a href="#" class="btn btn-success px-4">
+                                    <i class="fas fa-hand-holding-heart me-2"></i>Pay Mahfil Contribution
+                                </a>
+                                <a href="#" class="btn btn-outline-success px-4">
+                                    <i class="fas fa-star me-2"></i>Become a Sponsor
+                                </a>
+                            </div>
+
+                            <div class="mt-4 pt-3 border-top">
+                                <p class="small text-muted mb-1">Last year's achievements:</p>
+                                <div class="d-flex justify-content-around flex-wrap">
+                                    <span class="badge bg-light text-dark m-1">500+ Attendees</span>
+                                    <span class="badge bg-light text-dark m-1">15 Scholars</span>
+                                    <span class="badge bg-light text-dark m-1">3-Day Event</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Madrasa Development Section ========== -->
+    <section class="cta-section" style="background: var(--primary);">
+        <div class="container text-center">
+            <h2 class="text-white mb-3">Support Our Madrasa Development</h2>
+            <p class="lead text-white mb-4">Your donations directly impact the quality of Islamic education we provide
+            </p>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4">
+                            <h4 class="text-success mb-3">Current Funding Priorities</h4>
+
+                            <div class="row text-start">
+                                <!-- Boarding Facilities -->
+                                <div class="col-md-6">
+                                    <div class="d-flex mb-3">
+                                        <i class="fas fa-home text-success me-3 mt-1"></i>
+                                        <div>
+                                            <h5 class="mb-1">Boarding Facilities</h5>
+                                            <p class="small text-muted">৳500,000 needed for new dormitory</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Classroom Resources -->
+                                <div class="col-md-6">
+                                    <div class="d-flex mb-3">
+                                        <i class="fas fa-book text-success me-3 mt-1"></i>
+                                        <div>
+                                            <h5 class="mb-1">Classroom Resources</h5>
+                                            <p class="small text-muted">৳200,000 for furniture and books</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Teacher Support -->
+                                <div class="col-md-6">
+                                    <div class="d-flex mb-3">
+                                        <i class="fas fa-user-graduate text-success me-3 mt-1"></i>
+                                        <div>
+                                            <h5 class="mb-1">Teacher Support</h5>
+                                            <p class="small text-muted">৳100,000 for training and salaries</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Student Meals -->
+                                <div class="col-md-6">
+                                    <div class="d-flex mb-3">
+                                        <i class="fas fa-utensils text-success me-3 mt-1"></i>
+                                        <div>
+                                            <h5 class="mb-1">Student Meals</h5>
+                                            <p class="small text-muted">৳50,000 monthly for food program</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+                                <a href="#" class="btn btn-dark px-4">
+                                    <i class="fas fa-calendar-check me-2"></i>Monthly Donation
+                                </a>
+                                <a href="#" class="btn btn-outline-dark px-4">
+                                    <i class="fas fa-donate me-2"></i>One-Time Donation
+                                </a>
+                            </div>
+
+                            <div class="mt-4 pt-3 border-top">
+                                <p class="small text-muted">Currently serving 120 students with 8 qualified teachers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Testimonials ========== -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>What Our Villagers Say</h2>
+                <p class="lead">Hear from community members about our development work</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Testimonial 1 -->
+                <div class="col-md-4">
+                    <div class="testimonial-card h-100 text-center">
+                        <img src="https://i.ibb.co/J5gmrxK/jannat-2.png" class="testimonial-img mb-3">
+                        <p>"The new madrasa building has transformed Islamic education for our children. The monthly 50৳
+                            contribution is very reasonable."</p>
+                        <h5 class="mt-3">Md. Jannat Ali Sheikh</h5>
+                        <p class="text-muted small">Senior Citizen</p>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="col-md-4">
+                    <div class="testimonial-card h-100 text-center">
+                        <img src="https://i.ibb.co/PckkzSZ/sojib-2.png" class="testimonial-img mb-3">
+                        <p>"I appreciate how our mosque funds are used transparently. The committee shares updates every
+                            Friday meeting."</p>
+                        <h5 class="mt-3">Md. Sojib Sheikh</h5>
+                        <p class="text-muted small">Community Member</p>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="col-md-4">
+                    <div class="testimonial-card h-100 text-center">
+                        <img src="https://i.ibb.co/nzGN864/zahid-hossen.png" class="testimonial-img mb-3">
+                        <p>"The boarding facilities at the madrasa have greatly improved. Our donations are making a
+                            real difference."</p>
+                        <h5 class="mt-3">Md. Zahid Hossain</h5>
+                        <p class="text-muted small">Committee Member</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Footer ========== -->
+    <footer id="about">
+        <div class="container">
+            <div class="row g-4">
+                <!-- About Column -->
+                <div class="col-lg-4">
+                    <h5 class="text-white mb-3">Sadanandapur Village Committee</h5>
+                    <p class="small">Managing community assets since 1985. Committee meets every Friday 2PM-3PM after
+                        Jumu'ah prayers.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-decoration-none"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-decoration-none"><i class="fab fa-whatsapp ms-2"></i></a>
+                        <a href="#" class="text-decoration-none"><i class="fab fa-youtube ms-2"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links Columns -->
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h5 class="text-white mb-3">Facilities</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none">
+                                <span class="link-text">Central Mosque</span>
+                                <span class="link-icon"><i class="fas fa-mosque"></i></span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none">
+                                <span class="link-text">Madrasa</span>
+                                <span class="link-icon"><i class="fas fa-school"></i></span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none">
+                                <span class="link-text">Eidgah</span>
+                                <span class="link-icon"><i class="fas fa-kaaba"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h5 class="text-white mb-3">Projects</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none">
+                                <span class="link-text">Current</span>
+                                <span class="link-icon"><i class="fas fa-tasks"></i></span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none">
+                                <span class="link-text">Completed</span>
+                                <span class="link-icon"><i class="fas fa-check-circle"></i></span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none">
+                                <span class="link-text">Upcoming</span>
+                                <span class="link-icon"><i class="fas fa-calendar-alt"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h5 class="text-white mb-3">Payments</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none">
+                                <span class="link-text">Mosque Fees</span>
+                                <span class="link-icon"><i class="fas fa-money-bill-wave"></i></span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none">
+                                <span class="link-text">Madrasa Fees</span>
+                                <span class="link-icon"><i class="fas fa-coins"></i></span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none">
+                                <span class="link-text">Mahfil Fees</span>
+                                <span class="link-icon"><i class="fas fa-star"></i></span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none">
+                                <span class="link-text">Madrasa Boarding</span>
+                                <span class="link-icon"><i class="fas fa-home"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h5 class="text-white mb-3">Documents</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none">
+                                <span class="link-text">Financials Reports</span>
+                                <span class="link-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-decoration-none">
+                                <span class="link-text">Projects Reports</span>
+                                <span class="link-icon"><i class="fas fa-file-alt"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+
+            <div class="text-center">
+                <p class="small text-light mb-0">© 2023 Sadanandapur Village Development Committee. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="btn btn-primary back-to-top"
+        style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 99; width: 50px; height: 50px; border-radius: 50%; padding: 0; line-height: 50px;">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // When the page loads
+        $(document).ready(function () {
+            // Navbar scroll effect
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.navbar').addClass('scrolled');
+                    $('.back-to-top').fadeIn();
+                } else {
+                    $('.navbar').removeClass('scrolled');
+                    $('.back-to-top').fadeOut();
+                }
+            });
+
+            // Footer link hover effects
+            $('.footer-links a').hover(
+                function () {
+                    // Mouse enter
+                    $(this).find('.link-text').css('transform', 'translateX(5px)');
+                    $(this).find('.link-icon').css({
+                        'opacity': '1',
+                        'transform': 'translateX(0)'
+                    });
+                },
+                function () {
+                    // Mouse leave
+                    $(this).find('.link-text').css('transform', 'translateX(0)');
+                    $(this).find('.link-icon').css({
+                        'opacity': '0',
+                        'transform': 'translateX(-10px)'
+                    });
+                }
+            );
+
+            // Smooth scrolling for all links
+            $('a[href*="#"]').on('click', function (e) {
+                e.preventDefault();
+
+                $('html, body').animate(
+                    {
+                        scrollTop: $($(this).attr('href')).offset().top - 70,
+                    },
+                    500,
+                    'linear'
+                );
+            });
+
+            // Back to top button
+            $('.back-to-top').click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 'slow');
+                return false;
+            });
+
+            // Animate elements when they come into view
+            function animateOnScroll() {
+                $('.animate__animated').each(function () {
+                    var position = $(this).offset().top;
+                    var scroll = $(window).scrollTop();
+                    var windowHeight = $(window).height();
+
+                    if (scroll + windowHeight > position) {
+                        $(this).addClass('animate__fadeInUp');
+                    }
+                });
+            }
+
+            // Run once on page load
+            animateOnScroll();
+
+            // Run on scroll
+            $(window).scroll(function () {
+                animateOnScroll();
+            });
+
+            // Progress bar animation
+            $('.progress-bar').each(function () {
+                var width = $(this).attr('aria-valuenow');
+                $(this).css('width', '0').animate({
+                    width: width + '%'
+                }, 1500);
+            });
+
+            // Floating elements animation
+            $('.floating').each(function () {
+                var duration = Math.random() * 3 + 2;
+                var delay = Math.random() * 2;
+                $(this).css({
+                    'animation-duration': duration + 's',
+                    'animation-delay': delay + 's'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
